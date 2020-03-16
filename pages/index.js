@@ -6,9 +6,17 @@ import { Login } from "../components/login/login.tsx";
 import * as firebase from "firebase";
 import { firebaseConfig } from "../config.ts";
 import { api } from "../api/api.ts";
+import { useCorona } from "../components/corona/Corona.tsx";
 
 const Home = () => {
   const [app, setApp] = React.useState();
+  const {
+    CoronaGreeting,
+    CoronaCounter,
+    CoronaTable,
+    CoronaUpdateButton
+  } = useCorona();
+
   React.useEffect(() => {
     if (process.browser && !app) {
       setApp(new api());
@@ -22,7 +30,13 @@ const Home = () => {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Template>{app && <Login app={app}></Login>}</Template>
+      <Template>
+        {/* {app && <Login app={app}></Login>} */}
+        <CoronaGreeting />
+        <CoronaUpdateButton></CoronaUpdateButton>
+        <CoronaCounter />
+        <CoronaTable />
+      </Template>
     </>
   );
 };
