@@ -144,6 +144,21 @@ export const useCorona = () => {
     return <Table dataSource={stats[active]} columns={col()} />;
   };
 
+  const UserLocation = () => {
+    if (!process.browser) {
+      return null;
+    }
+    navigator.geolocation.getCurrentPosition(
+      res => {
+        const { latitude, longitude } = res.coords;
+        console.log(latitude, longitude);
+        return res;
+      },
+      res => console.error(res)
+    );
+    return <div>hi</div>;
+  };
+
   const CoronaUpdateButton = () => {
     const refetch = async () => {
       const data = await coronaApi();
@@ -158,5 +173,11 @@ export const useCorona = () => {
     );
   };
 
-  return { CoronaGreeting, CoronaCounter, CoronaTable, CoronaUpdateButton };
+  return {
+    CoronaGreeting,
+    CoronaCounter,
+    CoronaTable,
+    CoronaUpdateButton,
+    UserLocation
+  };
 };

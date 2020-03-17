@@ -14,7 +14,8 @@ const Home = () => {
     CoronaGreeting,
     CoronaCounter,
     CoronaTable,
-    CoronaUpdateButton
+    CoronaUpdateButton,
+    UserLocation
   } = useCorona();
 
   React.useEffect(() => {
@@ -36,6 +37,7 @@ const Home = () => {
         <CoronaUpdateButton></CoronaUpdateButton>
         <CoronaCounter />
         <CoronaTable />
+        <UserLocation />
       </Template>
     </>
   );
